@@ -1,5 +1,18 @@
 {
   "expo": {
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./local/assets/notification-icon.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./local/assets/notification-sound.wav",
+            "./local/assets/notification-sound-other.wav"
+          ]
+        }
+      ]
+    ],
     "name": "todoApp",
     "slug": "todoApp",
     "version": "1.0.0",
@@ -11,7 +24,7 @@
       "ios"
     ],
     "splash": {
-      "image": "./assets/splash2.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -36,7 +49,7 @@
     },
     
     "web": {
-      "favicon": "./assets/icon2.png"
+      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
