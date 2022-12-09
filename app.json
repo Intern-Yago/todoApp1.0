@@ -4,14 +4,14 @@
     "slug": "todoApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon2.png",
     "userInterfaceStyle": "light",
     "platforms": [
       "android",
       "ios"
     ],
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash2.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -30,13 +30,13 @@
       "package": "com.internyago.todoApp",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon2.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon2.png"
     },
     "extra": {
       "eas": {
