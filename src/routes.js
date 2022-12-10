@@ -8,18 +8,24 @@ const Tab = createBottomTabNavigator();
 export default function Routes() {
   return (
     
-    <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
+    <Tab.Navigator initialRouteName='Home' 
+    screenOptions={{
+      headerShown: false, 
+      tabBarActiveTintColor:"#626972", 
+      tabBarActiveTintColor:"#0066FF"
+    }}   
+    >
       <Tab.Screen name="Home" component={Home}  
         options={{
           title:"Página inicial", 
-          tabBarIcon:()=>{
-            return <Ionicons name='home' size={20}/>
+          tabBarIcon:({color, size})=>{
+            return <Ionicons name='home' size={size} color={color}/>
           }}}/>
       <Tab.Screen name="CreateToDo" component={CreateToDo} 
         options={{
           title:"Criar afazeres",
-          tabBarIcon:()=>{
-            return <Ionicons name='add-circle-outline' size={25}/>
+          tabBarIcon:({size, color})=>{
+            return <Ionicons name='add-circle-outline' size={size} color={color}/>
           }
           }}/>
     </Tab.Navigator>

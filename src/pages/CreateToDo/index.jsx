@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Toast from 'react-native-toast-message';
-import { StyleSheet, Text, View, TextInput, Button, AsyncStorage, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, AsyncStorage, Keyboard, Alert } from 'react-native';
 import * as Crypto from 'expo-crypto';
-import { useFocusEffect } from '@react-navigation/native';
 
 export default function App({navigation}){
     const [toDo, setToDo] = useState([])
@@ -15,7 +13,7 @@ export default function App({navigation}){
             const previousData = response?JSON.parse(response):[]
             await AsyncStorage.setItem("@Syrius",JSON.stringify(toDo))
         }catch(e){
-            alert(e)
+            Alert.alert("ToDoAPP",e)
         }
     }
 
@@ -25,7 +23,7 @@ export default function App({navigation}){
             const dataStor = response?JSON.parse(response):[]
             setToDo(dataStor)
         }catch(e){
-            alert(e)
+            Alert.alert("ToDoAPP",e)
         }
     }
 
@@ -34,21 +32,25 @@ export default function App({navigation}){
     },[toDo])
 
     async function addTodo(){
-        Keyboard.dismiss()
-        var time = new Date().getMilliseconds()
-        var newTodo = text
-        var arr = toDo
-        var hash =await Crypto.digestStringAsync(
-            Crypto.CryptoDigestAlgorithm.SHA256,
-            `${newTodo} ${time}`
-        );
-        var arrToDo = [hash, newTodo]
-        arr.push(arrToDo)
-        gravarStorage()
-        setHash("")
-        setText("")
-        setToDo(arr)
-        alert("Adicionado com sucesso")
+        if(text){
+            Keyboard.dismiss()
+            var time = new Date().getMilliseconds()
+            var newTodo = text
+            var arr = toDo
+            var hash =await Crypto.digestStringAsync(
+                Crypto.CryptoDigestAlgorithm.SHA256,
+                `${newTodo} ${time}`
+            );
+            var arrToDo = [hash, newTodo ]
+            arr.push(arrToDo)
+            gravarStorage()
+            setHash("")
+            setText("")
+            setToDo(arr)
+            Alert.alert("ToDoAPP","Adicionado com sucesso")
+        }else{
+            Alert.alert("ToDoAPP", "Está faltando acrescentar um afazer")
+        }
     }
 
     function deleteTodo(t){
@@ -56,7 +58,7 @@ export default function App({navigation}){
         var pos=arr.indexOf(t)
         arr.splice(pos, 1)
         gravarStorage()
-        alert("Removido com sucesso")
+        Alert.alert("ToDoAPP","Removido com sucesso")
         setToDo(arr)
     }
 
@@ -69,6 +71,7 @@ export default function App({navigation}){
           )
         })
     }
+
     return(
         <View style={styles.viewStyle}>
             <Text>ToDo APP</Text>
