@@ -34,6 +34,7 @@ export default function App({navigation}){
     async function addTodo(){
         if(text){
             Keyboard.dismiss()
+            var notification = true
             var time = new Date().getMilliseconds()
             var newTodo = text
             var arr = toDo
@@ -41,7 +42,7 @@ export default function App({navigation}){
                 Crypto.CryptoDigestAlgorithm.SHA256,
                 `${newTodo} ${time}`
             );
-            var arrToDo = [hash, newTodo ]
+            var arrToDo = [hash, newTodo, true ]
             arr.push(arrToDo)
             gravarStorage()
             setHash("")

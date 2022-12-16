@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import {Alert, AsyncStorage, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons.js'
+import NotificationService from "../../services/NotificationService";
 import { Card } from "../Card";
+
+import * as Notifications from 'expo-notifications'
+
+Notifications.setNotificationHandler({
+    handleNotification: async()=>({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false
+    })
+})
 
 export default function CheckBox({op, funcao}){
     const [selected, setSelected] = useState([])
     const [newData, setNewData] = useState([])
+
+    if(selected.findIndex((i)=>i===op[0]) !== -1){
+        NotificationService.deleteNotification(op[0])
+    }else{
+        NotificationService.createNotification(op[0], op[1])
+    }
 
     function toggle(data){
         const id = data[0]
